@@ -1,23 +1,16 @@
-name: Generar APK
+name: Generar Release Android
 
 on:
   push:
-    branches:
-      - main
-
-  pull_request:
-    branches:
-      - main
-
-  # Permite ejecutarlo manualmente desde GitHub
-  workflow_dispatch:
+    tags:
+      - "v*"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  build:
-    name: Compilar APK
+  release:
+    name: Compilar y publicar APK
     runs-on: ubuntu-latest
 
     steps:
@@ -33,15 +26,24 @@ jobs:
       - name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v5
 
-      - name: Dar permisos a Gradle Wrapper
+      - name: Dar permisos a Gradle
         run: chmod +x gradlew
 
-      - name: Compilar APK debug
+      - name: Compilar APK
         run: ./gradlew :app:assembleDebug --stacktrace
 
-      - name: Subir APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-debug
-          path: app/build/outputs/apk/debug/*.apk
-          if-no-files-found: error
+      - name: Renombrar APK
+        run: |
+          mkdir -p release
+          cp app/build/outputs/apk/debug/app-debug.apk \
+             "release/TiempoDeMundial-${GITHUB_REF_NAME}.apk"
+
+      - name: Crear GitHub Release
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            release/*.apk \
+            --verify-tag \
+            --title "TiempoDeMundial $GITHUB_REF_NAME" \
+            --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

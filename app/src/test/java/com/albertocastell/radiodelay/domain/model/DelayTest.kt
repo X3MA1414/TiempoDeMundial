@@ -1,4 +1,4 @@
-package com.albertocastell.radiodelay.domain.model
+package com.tiempodemundial.radiodelay.domain.model
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.albertocastell.radiodelay.data.stream
+package com.tiempodemundial.radiodelay.data.stream
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue

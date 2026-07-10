@@ -1,6 +1,6 @@
-package com.albertocastell.radiodelay.data.stream
+package com.tiempodemundial.radiodelay.data.stream
 
-import com.albertocastell.radiodelay.domain.model.Delay
+import com.tiempodemundial.radiodelay.domain.model.Delay
 import org.junit.Assert.assertArrayEquals
 import org.junit.Test
 

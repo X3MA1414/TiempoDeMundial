@@ -171,9 +171,9 @@ class RadioPlaybackService : MediaSessionService() {
     }
 
     companion object {
-        const val ACTION_PLAY = "com.albertocastell.radiodelay.action.PLAY"
-        const val ACTION_PAUSE = "com.albertocastell.radiodelay.action.PAUSE"
-        const val ACTION_SET_DELAY = "com.albertocastell.radiodelay.action.SET_DELAY"
+        const val ACTION_PLAY = "com.tiempodemundial.radiodelay.action.PLAY"
+        const val ACTION_PAUSE = "com.tiempodemundial.radiodelay.action.PAUSE"
+        const val ACTION_SET_DELAY = "com.tiempodemundial.radiodelay.action.SET_DELAY"
         const val EXTRA_DELAY_SECONDS = "extra_delay_seconds"
 
         private const val TAG = "RadioPlaybackService"

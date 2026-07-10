@@ -69,12 +69,7 @@ fun RadioScreen(
             TopAppBar(
                 title = {
                     Column {
-                        Text("Radio Delay", fontWeight = FontWeight.Bold)
-                        Text(
-                            text = "Tiempo de Juego · COPE",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
+                        Text("Tiempo de Mundial", fontWeight = FontWeight.Bold)
                     }
                 },
             )
@@ -176,17 +171,6 @@ fun RadioScreen(
                     style = MaterialTheme.typography.bodyMedium,
                 )
             }
-
-            Spacer(Modifier.height(24.dp))
-            HorizontalDivider()
-            Spacer(Modifier.height(12.dp))
-            Text(
-                text = "El audio se guarda localmente mientras la app está abierta. " +
-                    "Al cambiar el retraso se salta al punto ya almacenado, sin esperar en silencio ese tiempo.",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-            )
         }
     }
 }

@@ -11,7 +11,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tiempodemundial.radiodelay.RadioDelayApplication
-import com.tiempodemundial.radiodelay.presentation.theme.RadioDelayTheme
+import com.tiempodemundial.radiodelay.presentation.theme.TiempoDeMundialTheme
 
 class MainActivity : ComponentActivity() {
     private val viewModel: RadioViewModel by viewModels {
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
         requestNotificationPermissionWhenNeeded()
 
         setContent {
-            RadioDelayTheme {
+            TiempoDeMundialTheme {
                 val state = viewModel.state.collectAsStateWithLifecycle().value
                 RadioScreen(
                     state = state,

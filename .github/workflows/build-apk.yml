@@ -38,12 +38,20 @@ jobs:
           cp app/build/outputs/apk/debug/app-debug.apk \
              "release/LaHoraDelPartido-${GITHUB_REF_NAME}.apk"
 
-      - name: Crear GitHub Release
+      # Si la release ya existe (por ejemplo creada a mano desde la web antes de
+      # que terminara la compilación), "gh release create" falla. En ese caso
+      # basta con adjuntarle el APK.
+      - name: Publicar GitHub Release
         run: |
-          gh release create "$GITHUB_REF_NAME" \
-            release/*.apk \
-            --verify-tag \
-            --title "La Hora del Partido $GITHUB_REF_NAME" \
-            --generate-notes
+          if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
+            echo "La release $GITHUB_REF_NAME ya existe: se adjunta el APK."
+            gh release upload "$GITHUB_REF_NAME" release/*.apk --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" \
+              release/*.apk \
+              --verify-tag \
+              --title "La Hora del Partido $GITHUB_REF_NAME" \
+              --generate-notes
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

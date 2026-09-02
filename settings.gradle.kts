@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TiempoDeMundial"
+rootProject.name = "LaHoraDelPartido"
 include(":app")
